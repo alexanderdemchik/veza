@@ -1,13 +1,12 @@
+const dotenv = require('dotenv');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { DefinePlugin } = require('webpack');
+
+const env = dotenv.config().parsed;
 
 module.exports = {
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-    mainFields: ['main', 'module', 'browser'],
-  },
-  entry: './src/index.tsx',
-  target: 'electron-renderer',
+  entry: './src/app/index.tsx',
   devtool: 'source-map',
   module: {
     rules: [
@@ -21,15 +20,14 @@ module.exports = {
     ],
   },
   devServer: {
-    contentBase: path.join(__dirname, '../dist/index'),
     historyApiFallback: true,
     compress: true,
     hot: true,
-    port: 3000,
+    port: process.env.PORT,
     publicPath: '/',
   },
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
     publicPath: './',
   },
@@ -37,5 +35,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
+    new DefinePlugin(env)
   ],
 };

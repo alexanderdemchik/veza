@@ -1,11 +1,13 @@
 const path = require('path');
+const { DefinePlugin } = require('webpack');
+const env = require('dotenv').config().parsed;
 
 module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
   devtool: 'source-map',
-  entry: './src/main.ts',
+  entry: './src/electron/main.ts',
   target: 'electron-main',
   module: {
     rules: [
@@ -22,4 +24,7 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].js',
   },
+  plugins: [
+    new DefinePlugin(env)
+  ]
 };

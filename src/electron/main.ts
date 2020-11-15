@@ -2,18 +2,25 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 
+const isDev = process.env.NODE_ENV === 'development';
+
 function createWindow () {
+
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-  })
+  });
 
   // and load the index.html of the app.
-  mainWindow.loadURL('http://localhost:3000');
+  if (isDev) {
+    mainWindow.loadURL(`http://localhost:${process.env.PORT}`);
+    mainWindow.webContents.openDevTools()
+  } else {
+    mainWindow.loadFile('index.html');
+  }
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
