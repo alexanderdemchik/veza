@@ -19,7 +19,6 @@ function createWindow () {
   } else {
     mainWindow.loadFile('index.html');
   }
-
   // Open the DevTools.
 }
 

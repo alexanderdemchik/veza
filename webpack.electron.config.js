@@ -4,7 +4,7 @@ const env = require('dotenv').config().parsed;
 
 module.exports = {
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: [".ts", ".tsx", ".js", ".json"]
   },
   devtool: 'source-map',
   entry: './src/electron/main.ts',

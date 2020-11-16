@@ -8,6 +8,9 @@ const env = dotenv.config().parsed;
 module.exports = {
   entry: './src/app/index.tsx',
   devtool: 'source-map',
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".json"]
+  },
   module: {
     rules: [
       {
@@ -16,6 +19,12 @@ module.exports = {
         use: {
           loader: 'babel-loader',
         },
+      },
+      {
+        test: /\.svg$/,
+        use: [{
+          loader: '@svgr/webpack',
+        }],
       },
     ],
   },
@@ -35,6 +44,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
-    new DefinePlugin(env)
+    new DefinePlugin({'process.env': env})
   ],
 };
