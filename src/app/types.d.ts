@@ -18,10 +18,6 @@ interface Theme {
   typography: any
 }
 
-interface RootState {
-  pages: any
-}
-
 declare module '*.svg' {
   const content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
   export default content;

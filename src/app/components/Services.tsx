@@ -1,8 +1,8 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import { createUseStyles } from 'react-jss';
-import SpotifyIcon from '../icons/spotify.svg';
-import YandexMusicIcon from '../icons/yandexmusic.svg';
+
 import Grid from '@material-ui/core/Grid';
+import { services, servicesInfo } from '../common/services';
 
 const useStyles = createUseStyles<Theme>(theme => ({
   root: {
@@ -30,35 +30,21 @@ const useStyles = createUseStyles<Theme>(theme => ({
   }
 }));
 
-const YANDEXMUSIC = 'YANDEXMUSIC';
-const SPOTIFY = 'SPOTIFY';
-
-const services = [
-  {
-    name: YANDEXMUSIC,
-    icon: YandexMusicIcon,
-    label: 'Яндекс.Музыка'
-  },
-  {
-    name: SPOTIFY,
-    icon: SpotifyIcon,
-    label: 'Spotify'
-  }
-];
-
-const Services: React.FunctionComponent<{onClick?: MouseEventHandler}> = ({ onClick }) => {
+const Services: React.FunctionComponent<{onClick?: (service: string) => void}> = ({ onClick = () => {} }) => {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <Grid container className={classes.services}> 
         {services.map(service => {
-          const Icon = service.icon;
+          const Icon = servicesInfo[service].icon;
+          const label = servicesInfo[service].label;
 
-          return <Grid item xs={6} sm={4} md={3} lg={2}>
-            <div className={classes.service} onClick={onClick}>
+          return <Grid item xs={6} sm={4} md={3} lg={2} key={service}>
+            <div className={classes.service} onClick={() => onClick(service)}>
               <Icon />
               <div className={classes.label}>
-                {service.label}
+                {label}
               </div>
             </div>
           </Grid>

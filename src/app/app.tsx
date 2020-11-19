@@ -4,7 +4,7 @@ import injectSheet, { ThemeProvider } from 'react-jss';
 import { Provider } from 'react-redux';
 import defaultTheme from './theme';
 import store from './redux/store';
-import Routes from './pages/routes';
+import Navigator from './components/Navigator';
 
 const styles = (theme: Theme) => ({
   '@global': {
@@ -17,13 +17,17 @@ const styles = (theme: Theme) => ({
     },
     '#root': {
       height: '100%',
+      background: theme.palette.background.default,
+      color: theme.palette.text.primary,
       fontFamily: theme.typography.fontFamily
     }
   }
 });
 
 const App = injectSheet(styles)(() => (
-  <Routes />
+  <Navigator>
+    
+  </Navigator>
 ));
 
 const WrappedApp = () => (

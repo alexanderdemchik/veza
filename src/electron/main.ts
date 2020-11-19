@@ -1,6 +1,6 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
-const path = require('path')
+import {app, BrowserWindow} from 'electron';
+import path from 'path';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -8,8 +8,14 @@ function createWindow () {
 
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
+    width: 780,
     height: 600,
+    minWidth: 380,
+    minHeight: 400,
+    webPreferences: {
+      nodeIntegration: true,
+      webviewTag: true
+    }
   });
 
   // and load the index.html of the app.

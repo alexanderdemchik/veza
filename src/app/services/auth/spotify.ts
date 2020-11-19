@@ -1,0 +1,3 @@
+export const codeVerifier = '99FXObvhtNN~oAijoGpwx20nSoh.xGjTMO3fbnhq0Owm_gnuhjrxj80UA9a1PvSFFhvpBClpIIRgZBaejZGHlpzk2ehKJ7fpozv1OhOEKYKpq68KF0OLkx6kOTso5AjA';
+export const codeChallenge = 'nEh81YWoArZag90t3j96byO9kKDmKTBAdgs_5aRdmy0';
+export const clientId = 'c759303f754246e8ad6f69d886352f84';

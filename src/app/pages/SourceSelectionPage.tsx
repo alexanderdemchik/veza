@@ -3,7 +3,7 @@ import Services from '../components/Services';
 import Grid from '@material-ui/core/Grid';
 import { useDispatch } from 'react-redux';
 import { createUseStyles } from 'react-jss';
-import { setCurrentPage, PAGES } from './';
+import { setCurrentPage } from '../services/navigator';
 
 const useStyles = createUseStyles<Theme>(theme => ({
   root: {
@@ -22,8 +22,7 @@ const SourceSelectionPage: React.FunctionComponent<{}> = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const handleServiceClick = () => {
-    dispatch(setCurrentPage(PAGES.DESTINATIONSELECTION));
+  const handleServiceClick = (service: string) => {
   }
 
   return <Grid container direction='column' className={classes.root}>
